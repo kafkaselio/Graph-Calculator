@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@400;600;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-sans, "Inter"), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-mono, "JetBrains Mono"), ui-monospace, SFMono-Regular, monospace;
+  --font-display: var(--font-display, "Outfit"), sans-serif;
+  --font-serif: var(--font-serif, "Playfair Display"), serif;
+  
+  --color-accent: var(--accent-color);
+  
+  --radius-xl: 1.25rem;
+  --radius-2xl: 1.5rem;
+  --radius-3xl: 2rem;
+}
+
+@layer base {
+  :root {
+    --accent-color: #6366f1;
+    --radius-base: 0.5rem;
+  }
+
+  * {
+    @apply border-zinc-200 dark:border-zinc-800 transition-colors duration-200;
+  }
+  
+  body {
+    @apply bg-zinc-50 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100;
+  }
+
+  /* Radius overrides using custom variable */
+  .rounded-xl { border-radius: var(--radius-base); }
+  .rounded-2xl { border-radius: calc(var(--radius-base) * 1.5); }
+  .rounded-3xl { border-radius: calc(var(--radius-base) * 2); }
+}
+
+@layer utilities {
+  .theme-spacing-compact { 
+    --padding-metric: 1rem; 
+    --padding-sidebar: 1rem;
+    --padding-container: 1rem;
+  }
+  .theme-spacing-comfortable { 
+    --padding-metric: 1.5rem; 
+    --padding-sidebar: 1.5rem;
+    --padding-container: 2rem;
+  }
+  .theme-spacing-spacious { 
+    --padding-metric: 2.5rem; 
+    --padding-sidebar: 2rem;
+    --padding-container: 4rem;
+  }
+
+  .p-metric { padding: var(--padding-metric); }
+  .p-sidebar { padding: var(--padding-sidebar); }
+  .p-container { padding: var(--padding-container); }
+
+  .theme-glass {
+    @apply bg-white/60 dark:bg-zinc-900/60 backdrop-blur-md border-white/20 dark:border-white/10;
+  }
+
+  .text-accent { color: var(--accent-color); }
+  .bg-accent { background-color: var(--accent-color); }
+  .border-accent { border-color: var(--accent-color); }
+  .shadow-accent { --tw-shadow-color: var(--accent-color); }
+}
+
+@layer utilities {
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    @apply bg-zinc-200 dark:bg-zinc-800 rounded-full;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    @apply bg-zinc-300 dark:bg-zinc-700;
+  }
+}
